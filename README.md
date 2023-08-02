@@ -13,7 +13,7 @@ allprojects {
 2. Add the dependency
 ```groovy
 dependencies {
-    implementation 'com.github.fracassi-marco:JetChart:Tag'
+    implementation 'com.github.fracassi-marco:JetChart:1.0.0'
 }
 ```
 
