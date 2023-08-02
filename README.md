@@ -1,4 +1,10 @@
 # JetChart
+[![](https://jitpack.io/v/fracassi-marco/JetChart.svg)](https://jitpack.io/#fracassi-marco/JetChart)
+
+JetChart the Jetpack Compose charts library.
+* easy
+* fast
+* customizable
 
 ## Gradle setup
 1. Add the JitPack repository to your build file 
