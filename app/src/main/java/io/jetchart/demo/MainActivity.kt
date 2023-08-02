@@ -1,4 +1,4 @@
-package io.jetchart
+package io.jetchart.demo
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -27,8 +27,8 @@ import io.jetchart.bar.renderer.label.SimpleValueDrawer.ValueDrawLocation.Inside
 import io.jetchart.bar.renderer.xaxis.SimpleXAxisDrawer
 import io.jetchart.bar.renderer.yaxis.YAxisWithValueDrawer
 import io.jetchart.common.animation.fadeInAnimation
-import io.jetchart.ui.theme.JetChartTheme
-import io.jetchart.ui.theme.JetGreen
+import io.jetchart.demo.ui.theme.JetChartTheme
+import io.jetchart.demo.ui.theme.JetGreen
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {

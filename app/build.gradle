@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'io.jetchart'
+    namespace 'io.jetchart.demo'
     compileSdk 33
 
     defaultConfig {
-        applicationId "io.jetchart"
+        applicationId "io.jetchart.demo"
         minSdk 28
         targetSdk 33
         versionCode 1
@@ -31,7 +31,7 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     buildFeatures {
         compose true

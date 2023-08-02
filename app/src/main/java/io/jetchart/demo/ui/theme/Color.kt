@@ -1,4 +1,4 @@
-package io.jetchart.ui.theme
+package io.jetchart.demo.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
