@@ -1,7 +1,25 @@
 # JetChart
 
+## Gradle setup
+1. Add the JitPack repository to your build file 
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+2. Add the dependency
+```groovy
+dependencies {
+    implementation 'com.github.fracassi-marco:JetChart:Tag'
+}
+```
+
 ## Bar Chart
 ![Contribution guidelines for this project](docs/bar1.gif)
+
 ### Features
 You can:
 - scroll horizontally
