@@ -87,7 +87,6 @@ fun LineChart(
                 offset = horizontalOffsetPercentage
             )
 
-            // Draw the X Axis line.
             xAxisDrawer.drawAxisLine(
                 drawScope = this,
                 drawableArea = xAxisDrawableArea,
@@ -101,7 +100,6 @@ fun LineChart(
                 labels = labels
             )
 
-            // Draw the Y Axis line.
             yAxisDrawer.drawAxisLine(
                 drawScope = this,
                 canvas = canvas,

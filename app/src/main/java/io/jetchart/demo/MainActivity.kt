@@ -75,10 +75,7 @@ fun BarChartComposable(text: MutableState<String>) {
                     bar -> text.value = "You clicked on the bar ${bar.label}!"
             }
         }),
-        modifier = Modifier
-            .horizontalScroll(rememberScrollState())
-            .width(width.dp)
-            .height(500.dp),
+        modifier = Modifier.horizontalScroll(rememberScrollState()).width(width.dp).height(500.dp),
         animation = fadeInAnimation(3000),
         xAxisDrawer = BarXAxisDrawer(),
         yAxisDrawer = BarYAxisWithValueDrawer(),
