@@ -1,10 +1,30 @@
 # JetChart
 [![](https://jitpack.io/v/fracassi-marco/JetChart.svg)](https://jitpack.io/#fracassi-marco/JetChart)
 
-JetChart the Jetpack Compose charts library.
-* easy
-* fast
-* customizable
+A Jetpack Compose library for creating beautiful and interactive charts.
+
+The library supports a wide variety of chart types, including bar charts, line charts...
+
+Charts can be customized to match your app's style, and they can be animated to provide a more engaging user experience.
+
+Charts can be created in a declarative way, which makes it easy to update them as your data changes.
+
+The library is open source, and it is available on GitHub.
+
+## Key features:
+* Supports a wide variety of chart types
+* Easy to use
+* Declarative API
+* Open source
+* Visualize data in a clear and concise way
+* Engage users with interactive charts
+* Make your app more visually appealing
+
+## Use cases:
+* Financial apps
+* Analytics apps
+* Educational apps
+* Any app that needs to visualize data
 
 ## Gradle setup
 1. Add the JitPack repository to your build file 
