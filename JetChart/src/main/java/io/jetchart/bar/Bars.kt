@@ -1,9 +1,6 @@
 package io.jetchart.bar
 
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Green
-
-data class BarChartData(
+data class Bars(
     val bars: List<Bar>,
     val padBy: Float = 10f,
     val startAtZero: Boolean = true
@@ -31,11 +28,4 @@ data class BarChartData(
         }
 
     val maxBarValue = bars.maxByOrNull { it.value }?.value ?: 0f
-
-    data class Bar(
-        val value: Float,
-        val label: String,
-        val color: Color = Color(0xFF3ddc84),
-        val onTap: (Bar) -> Unit = { }
-    )
 }

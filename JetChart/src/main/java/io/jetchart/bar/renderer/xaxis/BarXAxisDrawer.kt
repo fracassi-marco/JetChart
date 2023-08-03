@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-class SimpleXAxisDrawer(
+class BarXAxisDrawer(
   private val axisLineThickness: Dp = 1.dp,
   private val axisLineColor: Color = Color.Black
 ) : XAxisDrawer {

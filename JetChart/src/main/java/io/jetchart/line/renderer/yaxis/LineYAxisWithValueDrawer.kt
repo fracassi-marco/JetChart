@@ -1,4 +1,4 @@
-package io.jetchart.bar.renderer.yaxis
+package io.jetchart.line.renderer.yaxis
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
@@ -12,18 +12,19 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.jetchart.common.Formatter
 import io.jetchart.common.utils.toLegacyInt
 import kotlin.math.max
 import kotlin.math.roundToInt
 
-class YAxisWithValueDrawer(
-  private val labelTextSize: TextUnit = 12.sp,
-  private val labelTextColor: Color = Color.Black,
-  private val labelRatio: Int = 3,
-  private val labelValueFormatter: Formatter = { value -> "%.1f".format(value) },
-  private val axisLineThickness: Dp = 1.dp,
-  private val axisLineColor: Color = Color.Black
+typealias LabelFormatter = (value: Float) -> String
+
+class LineYAxisWithValueDrawer(
+    private val labelTextSize: TextUnit = 12.sp,
+    private val labelTextColor: Color = Color.Black,
+    private val labelRatio: Int = 3,
+    private val labelValueFormatter: LabelFormatter = { value -> "%.1f".format(value) },
+    private val axisLineThickness: Dp = 1.dp,
+    private val axisLineColor: Color = Color.Black
 ) : YAxisDrawer {
   private val axisLinePaint = Paint().apply {
     isAntiAlias = true
@@ -78,11 +79,13 @@ class YAxisWithValueDrawer(
       val value = minValue + (i * ((maxValue - minValue) / labelCount))
 
       val label = labelValueFormatter(value)
-      val x = drawableArea.right - axisLineThickness.toPx() - (labelTextSize.toPx() / 2f)
+      val x =
+        drawableArea.right - axisLineThickness.toPx() - (labelTextSize.toPx() / 2f)
 
       labelPaint.getTextBounds(label, 0, label.length, textBounds)
 
-      val y = drawableArea.bottom - (i * (totalHeight / labelCount)) + (textBounds.height() / 2f)
+      val y =
+        drawableArea.bottom - (i * (totalHeight / labelCount)) + (textBounds.height() / 2f)
 
       canvas.nativeCanvas.drawText(label, x, y, labelPaint)
     }

@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -18,17 +20,29 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.Blue
+import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.unit.dp
+import io.jetchart.bar.Bar
 import io.jetchart.bar.BarChart
-import io.jetchart.bar.BarChartData
+import io.jetchart.bar.Bars
 import io.jetchart.bar.renderer.label.SimpleLabelDrawer
 import io.jetchart.bar.renderer.label.SimpleValueDrawer
 import io.jetchart.bar.renderer.label.SimpleValueDrawer.ValueDrawLocation.Inside
-import io.jetchart.bar.renderer.xaxis.SimpleXAxisDrawer
-import io.jetchart.bar.renderer.yaxis.YAxisWithValueDrawer
+import io.jetchart.bar.renderer.xaxis.BarXAxisDrawer
+import io.jetchart.bar.renderer.yaxis.BarYAxisWithValueDrawer
 import io.jetchart.common.animation.fadeInAnimation
 import io.jetchart.demo.ui.theme.JetChartTheme
 import io.jetchart.demo.ui.theme.JetGreen
+import io.jetchart.line.Line
+import io.jetchart.line.LineChart
+import io.jetchart.line.Point
+import io.jetchart.line.renderer.line.GradientLineShader
+import io.jetchart.line.renderer.line.SolidLineDrawer
+import io.jetchart.line.renderer.point.FilledPointDrawer
+import io.jetchart.line.renderer.xaxis.LineXAxisDrawer
+import io.jetchart.line.renderer.yaxis.LineYAxisWithValueDrawer
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -36,12 +50,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetChartTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     val text = remember { mutableStateOf("Click on a bar!") }
-                    Column {
+                    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         Text(text.value, modifier = Modifier.padding(16.dp))
                         BarChartComposable(text)
+                        JetDivider()
+                        LineChartComposable()
+                        JetDivider()
                     }
                 }
             }
@@ -53,9 +69,9 @@ class MainActivity : ComponentActivity() {
 fun BarChartComposable(text: MutableState<String>) {
     val numberOfBars = 8
     val width = numberOfBars * 80
-    BarChart(barChartData = BarChartData(
+    BarChart(chars = Bars(
         bars = (1..numberOfBars).map {
-            BarChartData.Bar(label = "BAR$it", value = Random.nextFloat(), color = JetGreen) {
+            Bar(label = "BAR$it", value = Random.nextFloat(), color = JetGreen) {
                     bar -> text.value = "You clicked on the bar ${bar.label}!"
             }
         }),
@@ -64,9 +80,35 @@ fun BarChartComposable(text: MutableState<String>) {
             .width(width.dp)
             .height(500.dp),
         animation = fadeInAnimation(3000),
-        xAxisDrawer = SimpleXAxisDrawer(),
-        yAxisDrawer = YAxisWithValueDrawer(),
+        xAxisDrawer = BarXAxisDrawer(),
+        yAxisDrawer = BarYAxisWithValueDrawer(),
         labelDrawer = SimpleLabelDrawer(),
         valueDrawer = SimpleValueDrawer(drawLocation = Inside)
     )
+}
+
+@Composable
+fun LineChartComposable() {
+    LineChart(lines = listOf(
+        Line(points = points(10), lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Blue)),
+        Line(points = points(15), lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Red))),
+    modifier = Modifier
+        .horizontalScroll(rememberScrollState())
+        .width(1000.dp)
+        .height(500.dp),
+    animation = fadeInAnimation(3000),
+    pointDrawer = FilledPointDrawer(),
+    xAxisDrawer = LineXAxisDrawer(),
+    yAxisDrawer = LineYAxisWithValueDrawer(),
+    horizontalOffsetPercentage = 1f,
+    lineShader = GradientLineShader(listOf(JetGreen, Transparent))
+    )
+}
+
+@Composable
+private fun points(count: Int) = (1..count).map { Point(Random.nextFloat(), "Point$it") }
+
+@Composable
+private fun JetDivider() {
+    Divider(modifier = Modifier.padding(horizontal = 5.dp, vertical = 50.dp), thickness = 1.dp, color = JetGreen)
 }

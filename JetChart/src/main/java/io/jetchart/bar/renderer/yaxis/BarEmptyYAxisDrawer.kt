@@ -4,7 +4,7 @@ import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Canvas
 import androidx.compose.ui.graphics.drawscope.DrawScope
 
-class EmptyYAxisDrawer : YAxisDrawer {
+class BarEmptyYAxisDrawer : YAxisDrawer {
   override fun drawAxisLine(drawScope: DrawScope, canvas: Canvas, drawableArea: Rect) {
   }
 

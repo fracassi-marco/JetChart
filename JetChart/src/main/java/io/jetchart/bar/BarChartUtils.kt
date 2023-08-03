@@ -15,12 +15,9 @@ internal object BarChartUtils {
     yAxisDrawer: YAxisDrawer,
     valueDrawer: ValueDrawer
   ): Pair<Rect, Rect> = with(drawScope) {
-    // yAxis
+
     val yAxisTop = valueDrawer.requiredAboveBarHeight(drawScope)
-
     val yAxisRight = yAxisDrawer.marginRight(this)
-
-    // xAxis
     val xAxisRight = totalSize.width
 
     // Measure the size of the text and line.
@@ -41,12 +38,12 @@ internal object BarChartUtils {
     )
   }
 
-  fun BarChartData.forEachWithArea(
+  fun Bars.forEachWithArea(
     drawScope: DrawScope,
     barDrawableArea: Rect,
     progress: Float,
     valueDrawer: ValueDrawer,
-    block: (barArea: Rect, bar: BarChartData.Bar) -> Unit
+    block: (barArea: Rect, bar: Bar) -> Unit
   ) {
     val totalBars = bars.size
     val widthOfBarArea = barDrawableArea.width / totalBars
