@@ -3,7 +3,7 @@ package io.jetchart.bar
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.drawscope.DrawScope
-import io.jetchart.bar.renderer.label.ValueDrawer
+import io.jetchart.bar.renderer.label.BarValueDrawer
 import io.jetchart.bar.renderer.xaxis.XAxisDrawer
 import io.jetchart.bar.renderer.yaxis.YAxisDrawer
 
@@ -13,7 +13,7 @@ internal object BarChartUtils {
     totalSize: Size,
     xAxisDrawer: XAxisDrawer,
     yAxisDrawer: YAxisDrawer,
-    valueDrawer: ValueDrawer
+    valueDrawer: BarValueDrawer
   ): Pair<Rect, Rect> = with(drawScope) {
 
     val yAxisTop = valueDrawer.requiredAboveBarHeight(drawScope)
@@ -39,11 +39,11 @@ internal object BarChartUtils {
   }
 
   fun Bars.forEachWithArea(
-    drawScope: DrawScope,
-    barDrawableArea: Rect,
-    progress: Float,
-    valueDrawer: ValueDrawer,
-    block: (barArea: Rect, bar: Bar) -> Unit
+      drawScope: DrawScope,
+      barDrawableArea: Rect,
+      progress: Float,
+      valueDrawer: BarValueDrawer,
+      block: (barArea: Rect, bar: Bar) -> Unit
   ) {
     val totalBars = bars.size
     val widthOfBarArea = barDrawableArea.width / totalBars

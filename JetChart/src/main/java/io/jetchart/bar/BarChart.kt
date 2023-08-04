@@ -19,8 +19,8 @@ import io.jetchart.bar.BarChartUtils.forEachWithArea
 import io.jetchart.bar.renderer.bar.SimpleBarDrawer
 import io.jetchart.bar.renderer.label.LabelDrawer
 import io.jetchart.bar.renderer.label.SimpleLabelDrawer
-import io.jetchart.bar.renderer.label.SimpleValueDrawer
-import io.jetchart.bar.renderer.label.ValueDrawer
+import io.jetchart.bar.renderer.label.SimpleBarValueDrawer
+import io.jetchart.bar.renderer.label.BarValueDrawer
 import io.jetchart.bar.renderer.xaxis.BarXAxisDrawer
 import io.jetchart.bar.renderer.xaxis.XAxisDrawer
 import io.jetchart.bar.renderer.yaxis.YAxisDrawer
@@ -35,7 +35,7 @@ fun BarChart(
     xAxisDrawer: XAxisDrawer = BarXAxisDrawer(),
     yAxisDrawer: YAxisDrawer = BarYAxisWithValueDrawer(),
     labelDrawer: LabelDrawer = SimpleLabelDrawer(),
-    valueDrawer: ValueDrawer = SimpleValueDrawer()
+    valueDrawer: BarValueDrawer = SimpleBarValueDrawer()
 ) {
     val transitionAnimation = remember(chars.bars) { Animatable(initialValue = 0f) }
     val rectangles = remember { mutableStateMapOf<Bar, Rect>() }

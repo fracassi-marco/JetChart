@@ -30,8 +30,8 @@ import io.jetchart.bar.Bar
 import io.jetchart.bar.BarChart
 import io.jetchart.bar.Bars
 import io.jetchart.bar.renderer.label.SimpleLabelDrawer
-import io.jetchart.bar.renderer.label.SimpleValueDrawer
-import io.jetchart.bar.renderer.label.SimpleValueDrawer.ValueDrawLocation.Inside
+import io.jetchart.bar.renderer.label.SimpleBarValueDrawer
+import io.jetchart.bar.renderer.label.SimpleBarValueDrawer.ValueDrawLocation.Inside
 import io.jetchart.bar.renderer.xaxis.BarXAxisDrawer
 import io.jetchart.bar.renderer.yaxis.BarYAxisWithValueDrawer
 import io.jetchart.common.animation.fadeInAnimation
@@ -96,7 +96,7 @@ fun BarChartComposable(text: MutableState<String>) {
         xAxisDrawer = BarXAxisDrawer(),
         yAxisDrawer = BarYAxisWithValueDrawer(),
         labelDrawer = SimpleLabelDrawer(),
-        valueDrawer = SimpleValueDrawer(drawLocation = Inside)
+        valueDrawer = SimpleBarValueDrawer(drawLocation = Inside)
     )
 }
 
