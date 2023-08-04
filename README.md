@@ -39,7 +39,7 @@ allprojects {
 2. Add the dependency
 ```groovy
 dependencies {
-    implementation 'com.github.fracassi-marco:JetChart:1.1.0'
+    implementation 'com.github.fracassi-marco:JetChart:1.2.0'
 }
 ```
 
@@ -115,4 +115,23 @@ fun LineChartComposable() {
 
 @Composable
 private fun points(count: Int) = (1..count).map { Point(Random.nextFloat(), "Point$it") }
+```
+
+## Pie Chart
+![Pie Chart big](docs/pie1.gif) ![Pie Chart small](docs/pie2.gif)
+
+### Features
+You can:
+- animate the drawing
+
+### Example
+```kotlin
+@Composable
+fun PieChartComposable() {
+    PieChart(pies = Pies(listOf(Slice(35f, Red), Slice(45f, JetGreen), Slice(15f, Yellow), Slice(5f, Cyan))),
+        modifier = Modifier.height(340.dp),
+        animation = fadeInAnimation(4000),
+        sliceDrawer = FilledSliceDrawer(thickness = 60f)
+    )
+}
 ```

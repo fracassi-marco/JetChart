@@ -21,8 +21,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Blue
+import androidx.compose.ui.graphics.Color.Companion.Cyan
 import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.Transparent
+import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.unit.dp
 import io.jetchart.bar.Bar
 import io.jetchart.bar.BarChart
@@ -43,6 +45,10 @@ import io.jetchart.line.renderer.line.SolidLineDrawer
 import io.jetchart.line.renderer.point.FilledPointDrawer
 import io.jetchart.line.renderer.xaxis.LineXAxisDrawer
 import io.jetchart.line.renderer.yaxis.LineYAxisWithValueDrawer
+import io.jetchart.pie.PieChart
+import io.jetchart.pie.Pies
+import io.jetchart.pie.Slice
+import io.jetchart.pie.renderer.FilledSliceDrawer
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -58,6 +64,8 @@ class MainActivity : ComponentActivity() {
                         JetDivider()
                         LineChartComposable()
                         JetDivider()
+                        PieChartComposable()
+                        JetDivider()
                     }
                 }
             }
@@ -71,7 +79,7 @@ fun BarChartComposable(text: MutableState<String>) {
     val width = numberOfBars * 80
     BarChart(chars = Bars(
         bars = (1..numberOfBars).map {
-            Bar(label = "BAR$it", value = Random.nextFloat(), color = JetGreen) {
+            Bar(label = "BAR$it", value = Random.nextFloat(), color = if(it % 2 == 0) JetGreen else Red) {
                     bar -> text.value = "You clicked on the bar ${bar.label}!"
             }
         }),
@@ -104,6 +112,15 @@ fun LineChartComposable() {
 
 @Composable
 private fun points(count: Int) = (1..count).map { Point(Random.nextFloat(), "Point$it") }
+
+@Composable
+fun PieChartComposable() {
+    PieChart(pies = Pies(listOf(Slice(35f, Red), Slice(45f, JetGreen), Slice(15f, Yellow), Slice(5f, Cyan))),
+        modifier = Modifier.height(340.dp),
+        animation = fadeInAnimation(4000),
+        sliceDrawer = FilledSliceDrawer(thickness = 60f)
+    )
+}
 
 @Composable
 private fun JetDivider() {
