@@ -37,6 +37,7 @@ import io.jetchart.bar.renderer.yaxis.BarYAxisWithValueDrawer
 import io.jetchart.common.animation.fadeInAnimation
 import io.jetchart.demo.ui.theme.JetChartTheme
 import io.jetchart.demo.ui.theme.JetGreen
+import io.jetchart.gauge.GaugeChart
 import io.jetchart.line.Line
 import io.jetchart.line.LineChart
 import io.jetchart.line.Point
@@ -68,6 +69,8 @@ class MainActivity : ComponentActivity() {
                         JetDivider()
                         DonutChartComposable()
                         JetDivider()
+                        GaugeChartComposable()
+                        JetDivider()
                     }
                 }
             }
@@ -85,7 +88,10 @@ fun BarChartComposable(text: MutableState<String>) {
                     bar -> text.value = "You clicked on the bar ${bar.label}!"
             }
         }),
-        modifier = Modifier.horizontalScroll(rememberScrollState()).width(width.dp).height(500.dp),
+        modifier = Modifier
+            .horizontalScroll(rememberScrollState())
+            .width(width.dp)
+            .height(500.dp),
         animation = fadeInAnimation(3000),
         xAxisDrawer = BarXAxisDrawer(),
         yAxisDrawer = BarYAxisWithValueDrawer(),
@@ -130,6 +136,16 @@ fun DonutChartComposable() {
         modifier = Modifier.height(340.dp),
         animation = fadeInAnimation(4000),
         sliceDrawer = FilledSliceDrawer(thickness = 60f)
+    )
+}
+
+@Composable
+fun GaugeChartComposable() {
+    GaugeChart(
+        percentValue = 62f, //between 0 and 100
+        modifier = Modifier.height(500.dp),
+        animation = fadeInAnimation(4000),
+        primaryColor = JetGreen
     )
 }
 
