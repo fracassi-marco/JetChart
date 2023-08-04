@@ -66,6 +66,8 @@ class MainActivity : ComponentActivity() {
                         JetDivider()
                         PieChartComposable()
                         JetDivider()
+                        DonutChartComposable()
+                        JetDivider()
                     }
                 }
             }
@@ -115,6 +117,15 @@ private fun points(count: Int) = (1..count).map { Point(Random.nextFloat(), "Poi
 
 @Composable
 fun PieChartComposable() {
+    PieChart(pies = Pies(listOf(Slice(15f, Red), Slice(27f, JetGreen), Slice(5f, Yellow), Slice(11f, Cyan))),
+        modifier = Modifier.height(340.dp),
+        animation = fadeInAnimation(4000),
+        sliceDrawer = FilledSliceDrawer(thickness = 100f)
+    )
+}
+
+@Composable
+fun DonutChartComposable() {
     PieChart(pies = Pies(listOf(Slice(35f, Red), Slice(45f, JetGreen), Slice(15f, Yellow), Slice(5f, Cyan))),
         modifier = Modifier.height(340.dp),
         animation = fadeInAnimation(4000),

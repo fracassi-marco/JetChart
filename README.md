@@ -3,7 +3,7 @@
 
 A Jetpack Compose library for creating beautiful and interactive charts.
 
-The library supports a wide variety of chart types, including bar charts, line charts...
+The library supports a wide variety of chart types, including bar charts, line charts, pie chart, donut charts...
 
 Charts can be customized to match your app's style, and they can be animated to provide a more engaging user experience.
 
@@ -118,10 +118,11 @@ private fun points(count: Int) = (1..count).map { Point(Random.nextFloat(), "Poi
 ```
 
 ## Pie Chart
-![Pie Chart big](docs/pie1.gif) ![Pie Chart small](docs/pie2.gif)
+![Pie Chart](docs/pie1.png) ![Donut Chart big](docs/donut1.png) ![Donut Chart small](docs/donut2.png)
 
 ### Features
 You can:
+- specify thickness to obtain a pie or a donut chart
 - animate the drawing
 
 ### Example
