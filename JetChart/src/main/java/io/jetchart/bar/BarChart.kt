@@ -17,8 +17,8 @@ import io.jetchart.bar.BarChartUtils.axisAreas
 import io.jetchart.bar.BarChartUtils.barDrawableArea
 import io.jetchart.bar.BarChartUtils.forEachWithArea
 import io.jetchart.bar.renderer.bar.SimpleBarDrawer
-import io.jetchart.bar.renderer.label.LabelDrawer
-import io.jetchart.bar.renderer.label.SimpleLabelDrawer
+import io.jetchart.bar.renderer.label.BarLabelDrawer
+import io.jetchart.bar.renderer.label.SimpleBarLabelDrawer
 import io.jetchart.bar.renderer.label.SimpleBarValueDrawer
 import io.jetchart.bar.renderer.label.BarValueDrawer
 import io.jetchart.bar.renderer.xaxis.BarXAxisDrawer
@@ -34,7 +34,7 @@ fun BarChart(
     animation: AnimationSpec<Float> = fadeInAnimation(),
     xAxisDrawer: XAxisDrawer = BarXAxisDrawer(),
     yAxisDrawer: YAxisDrawer = BarYAxisWithValueDrawer(),
-    labelDrawer: LabelDrawer = SimpleLabelDrawer(),
+    labelDrawer: BarLabelDrawer = SimpleBarLabelDrawer(),
     valueDrawer: BarValueDrawer = SimpleBarValueDrawer()
 ) {
     val transitionAnimation = remember(chars.bars) { Animatable(initialValue = 0f) }

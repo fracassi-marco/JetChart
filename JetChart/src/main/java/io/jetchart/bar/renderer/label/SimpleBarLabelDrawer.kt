@@ -9,10 +9,10 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import io.jetchart.common.utils.toLegacyInt
 
-class SimpleLabelDrawer(
+class SimpleBarLabelDrawer(
   private val labelTextSize: TextUnit = 12.sp,
   private val labelTextColor: Color = Color.Black
-) : LabelDrawer {
+) : BarLabelDrawer {
   private val _labelTextArea: Float? = null
   private val paint = android.graphics.Paint().apply {
     this.textAlign = android.graphics.Paint.Align.CENTER

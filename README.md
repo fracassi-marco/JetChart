@@ -40,7 +40,7 @@ allprojects {
 2. Add the dependency
 ```groovy
 dependencies {
-    implementation 'com.github.fracassi-marco:JetChart:1.3.0'
+    implementation 'com.github.fracassi-marco:JetChart:1.3.1'
 }
 ```
 
@@ -73,8 +73,8 @@ fun BarChartComposable(text: MutableState<String>) {
         animation = fadeInAnimation(3000),
         xAxisDrawer = BarXAxisDrawer(),
         yAxisDrawer = BarYAxisWithValueDrawer(),
-        labelDrawer = SimpleLabelDrawer(),
-        valueDrawer = SimpleValueDrawer(drawLocation = Inside)
+        labelDrawer = SimpleBarLabelDrawer(),
+        valueDrawer = SimpleBarValueDrawer(drawLocation = Inside)
     )
 }
 ```
