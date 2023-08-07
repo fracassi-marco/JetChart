@@ -3,7 +3,7 @@
 
 A Jetpack Compose library for creating beautiful and interactive charts.
 
-The library supports a wide variety of chart types, including bar charts, line charts, pie chart, donut charts...
+The library supports a wide variety of chart types, including bar charts, line charts, pie chart, donut charts, gauge chart...
 
 Charts can be customized to match your app's style, and they can be animated to provide a more engaging user experience.
 
@@ -24,6 +24,7 @@ The library is open source, and it is available on GitHub.
 * Financial apps
 * Analytics apps
 * Educational apps
+* Sports and fitness tracker apps
 * Any app that needs to visualize data
 
 ## Gradle setup
@@ -39,7 +40,7 @@ allprojects {
 2. Add the dependency
 ```groovy
 dependencies {
-    implementation 'com.github.fracassi-marco:JetChart:1.2.0'
+    implementation 'com.github.fracassi-marco:JetChart:1.3.0'
 }
 ```
 
@@ -133,6 +134,29 @@ fun PieChartComposable() {
         modifier = Modifier.height(340.dp),
         animation = fadeInAnimation(4000),
         sliceDrawer = FilledSliceDrawer(thickness = 60f)
+    )
+}
+```
+
+## Gauge Chart
+![Gauge Chart](docs/gauge1.gif)
+
+### Features
+You can:
+- customize the pointer
+- customize the arc
+- animate the drawing
+
+### Example
+```kotlin
+@Composable
+fun GaugeChartComposable() {
+    GaugeChart(
+        percentValue = 72f, //between 0 and 100
+        modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+        animation = fadeInAnimation(4000),
+        pointerDrawer = NeedleDrawer(needleColor = JetGreen, baseSize = 12.dp),
+        arcDrawer = GaugeArcDrawer(thickness = 32.dp, cap = StrokeCap.Round)
     )
 }
 ```

@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -25,19 +26,22 @@ import androidx.compose.ui.graphics.Color.Companion.Cyan
 import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.Yellow
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.unit.dp
 import io.jetchart.bar.Bar
 import io.jetchart.bar.BarChart
 import io.jetchart.bar.Bars
-import io.jetchart.bar.renderer.label.SimpleLabelDrawer
 import io.jetchart.bar.renderer.label.SimpleBarValueDrawer
 import io.jetchart.bar.renderer.label.SimpleBarValueDrawer.ValueDrawLocation.Inside
+import io.jetchart.bar.renderer.label.SimpleLabelDrawer
 import io.jetchart.bar.renderer.xaxis.BarXAxisDrawer
 import io.jetchart.bar.renderer.yaxis.BarYAxisWithValueDrawer
 import io.jetchart.common.animation.fadeInAnimation
 import io.jetchart.demo.ui.theme.JetChartTheme
 import io.jetchart.demo.ui.theme.JetGreen
+import io.jetchart.gauge.GaugeArcDrawer
 import io.jetchart.gauge.GaugeChart
+import io.jetchart.gauge.NeedleDrawer
 import io.jetchart.line.Line
 import io.jetchart.line.LineChart
 import io.jetchart.line.Point
@@ -142,10 +146,11 @@ fun DonutChartComposable() {
 @Composable
 fun GaugeChartComposable() {
     GaugeChart(
-        percentValue = 62f, //between 0 and 100
-        modifier = Modifier.height(500.dp),
+        percentValue = 72f, //between 0 and 100
+        modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
         animation = fadeInAnimation(4000),
-        primaryColor = JetGreen
+        pointerDrawer = NeedleDrawer(needleColor = JetGreen, baseSize = 12.dp),
+        arcDrawer = GaugeArcDrawer(thickness = 32.dp, cap = StrokeCap.Round)
     )
 }
 
