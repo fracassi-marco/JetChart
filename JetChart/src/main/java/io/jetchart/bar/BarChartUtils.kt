@@ -3,6 +3,8 @@ package io.jetchart.bar
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import io.jetchart.bar.renderer.label.BarValueDrawer
 import io.jetchart.bar.renderer.xaxis.XAxisDrawer
 import io.jetchart.bar.renderer.yaxis.YAxisDrawer
@@ -39,15 +41,16 @@ internal object BarChartUtils {
   }
 
   fun Bars.forEachWithArea(
-      drawScope: DrawScope,
-      barDrawableArea: Rect,
-      progress: Float,
-      valueDrawer: BarValueDrawer,
-      block: (barArea: Rect, bar: Bar) -> Unit
-  ) {
+    drawScope: DrawScope,
+    barDrawableArea: Rect,
+    progress: Float,
+    valueDrawer: BarValueDrawer,
+    barHorizontalMargin: Dp,
+    block: (barArea: Rect, bar: Bar) -> Unit
+  ) = with(drawScope){
     val totalBars = bars.size
     val widthOfBarArea = barDrawableArea.width / totalBars
-    val offsetOfBar = widthOfBarArea * 0.2f
+    val offsetOfBar = widthOfBarArea - barHorizontalMargin.toPx()
 
     bars.forEachIndexed { index, bar ->
       val left = barDrawableArea.left + (index * widthOfBarArea)

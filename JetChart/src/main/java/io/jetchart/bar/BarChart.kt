@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import io.jetchart.bar.BarChartUtils.axisAreas
 import io.jetchart.bar.BarChartUtils.barDrawableArea
 import io.jetchart.bar.BarChartUtils.forEachWithArea
@@ -35,7 +37,8 @@ fun BarChart(
     xAxisDrawer: XAxisDrawer = BarXAxisDrawer(),
     yAxisDrawer: YAxisDrawer = BarYAxisWithValueDrawer(),
     labelDrawer: BarLabelDrawer = SimpleBarLabelDrawer(),
-    valueDrawer: BarValueDrawer = SimpleBarValueDrawer()
+    valueDrawer: BarValueDrawer = SimpleBarValueDrawer(),
+    barHorizontalMargin: Dp = 3.dp
 ) {
     val transitionAnimation = remember(chars.bars) { Animatable(initialValue = 0f) }
     val rectangles = remember { mutableStateMapOf<Bar, Rect>() }
@@ -63,7 +66,7 @@ fun BarChart(
 
             xAxisDrawer.drawAxisLine(this, canvas, xAxisArea)
 
-            chars.forEachWithArea(this, barDrawableArea, transitionAnimation.value, valueDrawer) { barArea, bar ->
+            chars.forEachWithArea(this, barDrawableArea, transitionAnimation.value, valueDrawer, barHorizontalMargin) { barArea, bar ->
                 barDrawer.drawBar(this, canvas, barArea, bar)
                 labelDrawer.draw(this, canvas, bar.label, barArea, xAxisArea)
                 valueDrawer.draw(this, canvas, bar.value, barArea, xAxisArea)

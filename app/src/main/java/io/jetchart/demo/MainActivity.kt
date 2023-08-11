@@ -100,7 +100,8 @@ fun BarChartComposable(text: MutableState<String>) {
         xAxisDrawer = BarXAxisDrawer(),
         yAxisDrawer = BarYAxisWithValueDrawer(),
         labelDrawer = SimpleBarLabelDrawer(),
-        valueDrawer = SimpleBarValueDrawer(drawLocation = Inside)
+        valueDrawer = SimpleBarValueDrawer(drawLocation = Inside),
+        barHorizontalMargin = 5.dp
     )
 }
 
