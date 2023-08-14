@@ -4,7 +4,6 @@ import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import io.jetchart.bar.renderer.label.BarValueDrawer
 import io.jetchart.bar.renderer.xaxis.XAxisDrawer
 import io.jetchart.bar.renderer.yaxis.YAxisDrawer
@@ -21,8 +20,6 @@ internal object BarChartUtils {
     val yAxisTop = valueDrawer.requiredAboveBarHeight(drawScope)
     val yAxisRight = yAxisDrawer.marginRight(this)
     val xAxisRight = totalSize.width
-
-    // Measure the size of the text and line.
     val xAxisTop = totalSize.height - xAxisDrawer.requiredHeight(drawScope)
 
     return Pair(
@@ -50,7 +47,7 @@ internal object BarChartUtils {
   ) = with(drawScope){
     val totalBars = bars.size
     val widthOfBarArea = barDrawableArea.width / totalBars
-    val offsetOfBar = widthOfBarArea - barHorizontalMargin.toPx()
+    val barGapPx = barHorizontalMargin.toPx()
 
     bars.forEachIndexed { index, bar ->
       val left = barDrawableArea.left + (index * widthOfBarArea)
@@ -59,9 +56,9 @@ internal object BarChartUtils {
       val barHeight = (height - valueDrawer.requiredAboveBarHeight(drawScope)) * progress
 
       val barArea = Rect(
-        left = left + offsetOfBar,
+        left = left + barGapPx,
         top = barDrawableArea.bottom - (bar.value / maxBarValue) * barHeight,
-        right = left + widthOfBarArea - offsetOfBar,
+        right = left + widthOfBarArea - barGapPx,
         bottom = barDrawableArea.bottom
       )
       block(barArea, bar)
