@@ -32,7 +32,7 @@ import io.jetchart.common.animation.fadeInAnimation
 @Composable
 fun BarChart(
     modifier: Modifier = Modifier,
-    chars: Bars,
+    bars: Bars,
     animation: AnimationSpec<Float> = fadeInAnimation(),
     xAxisDrawer: XAxisDrawer = BarXAxisDrawer(),
     yAxisDrawer: YAxisDrawer = BarYAxisWithValueDrawer(),
@@ -40,10 +40,10 @@ fun BarChart(
     valueDrawer: BarValueDrawer = SimpleBarValueDrawer(),
     barHorizontalMargin: Dp = 3.dp
 ) {
-    val transitionAnimation = remember(chars.bars) { Animatable(initialValue = 0f) }
-    val rectangles = remember { mutableStateMapOf<Bar, Rect>() }
+    val transitionAnimation = remember(bars.bars) { Animatable(initialValue = 0f) }
+    val rectangles = remember(bars.bars) { mutableStateMapOf<Bar, Rect>() }
     val barDrawer = SimpleBarDrawer()
-    LaunchedEffect(chars.bars) {
+    LaunchedEffect(bars.bars) {
         transitionAnimation.animateTo(1f, animationSpec = animation)
     }
 
@@ -60,13 +60,13 @@ fun BarChart(
             val (xAxisArea, yAxisArea) = axisAreas(this, size, xAxisDrawer, yAxisDrawer, valueDrawer)
             val barDrawableArea = barDrawableArea(xAxisArea)
 
-            yAxisDrawer.drawAxisLabels(this, canvas, yAxisArea, chars.minYValue, chars.maxYValue)
+            yAxisDrawer.drawAxisLabels(this, canvas, yAxisArea, bars.minYValue, bars.maxYValue)
 
             yAxisDrawer.drawAxisLine(this, canvas, yAxisArea)
 
             xAxisDrawer.drawAxisLine(this, canvas, xAxisArea)
 
-            chars.forEachWithArea(this, barDrawableArea, transitionAnimation.value, valueDrawer, barHorizontalMargin) { barArea, bar ->
+            bars.forEachWithArea(this, barDrawableArea, transitionAnimation.value, valueDrawer, barHorizontalMargin) { barArea, bar ->
                 barDrawer.drawBar(this, canvas, barArea, bar)
                 labelDrawer.draw(this, canvas, bar.label, barArea, xAxisArea)
                 valueDrawer.draw(this, canvas, bar.value, barArea, xAxisArea)

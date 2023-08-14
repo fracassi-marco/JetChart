@@ -40,7 +40,7 @@ allprojects {
 2. Add the dependency
 ```groovy
 dependencies {
-    implementation 'com.github.fracassi-marco:JetChart:1.3.3'
+    implementation 'com.github.fracassi-marco:JetChart:1.3.4'
 }
 ```
 
@@ -63,7 +63,7 @@ You can:
 fun BarChartComposable(text: MutableState<String>) {
     val numberOfBars = 8
     val width = numberOfBars * 80
-    BarChart(chars = Bars(
+    BarChart(bars = Bars(
         bars = (1..numberOfBars).map {
             Bar(label = "BAR$it", value = Random.nextFloat(), color = JetGreen) {
                     bar -> text.value = "You clicked on the bar ${bar.label}!"

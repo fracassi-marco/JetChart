@@ -86,7 +86,7 @@ class MainActivity : ComponentActivity() {
 fun BarChartComposable(text: MutableState<String>) {
     val numberOfBars = 8
     val width = numberOfBars * 80
-    BarChart(chars = Bars(
+    BarChart(bars = Bars(
         bars = (1..numberOfBars).map {
             Bar(label = "BAR$it", value = Random.nextFloat(), color = if(it % 2 == 0) JetGreen else Red) {
                     bar -> text.value = "You clicked on the bar ${bar.label}!"
