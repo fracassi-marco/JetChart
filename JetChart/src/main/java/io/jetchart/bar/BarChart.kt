@@ -49,7 +49,7 @@ fun BarChart(
 
     Canvas(modifier = modifier
         .fillMaxSize()
-        .pointerInput(Unit) {
+        .pointerInput(bars.bars) {
             detectTapGestures { offset ->
                 rectangles
                     .filter { it.value.contains(offset) }

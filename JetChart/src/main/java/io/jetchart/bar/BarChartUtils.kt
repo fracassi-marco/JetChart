@@ -8,7 +8,7 @@ import io.jetchart.bar.renderer.label.BarValueDrawer
 import io.jetchart.bar.renderer.xaxis.XAxisDrawer
 import io.jetchart.bar.renderer.yaxis.YAxisDrawer
 
-internal object BarChartUtils {
+object BarChartUtils {
   fun axisAreas(
     drawScope: DrawScope,
     totalSize: Size,

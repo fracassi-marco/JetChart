@@ -16,9 +16,8 @@ data class Bars(
 
             return min to max
         }
-    internal val maxYValue: Float =
-        yMinMax.second + ((yMinMax.second - yMinMax.first) * padBy / 100f)
-    internal val minYValue: Float
+    val maxYValue: Float = yMinMax.second + ((yMinMax.second - yMinMax.first) * padBy / 100f)
+    val minYValue: Float
         get() {
             return if (startAtZero) {
                 0f

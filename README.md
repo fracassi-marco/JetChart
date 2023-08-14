@@ -40,7 +40,7 @@ allprojects {
 2. Add the dependency
 ```groovy
 dependencies {
-    implementation 'com.github.fracassi-marco:JetChart:1.3.4'
+    implementation 'com.github.fracassi-marco:JetChart:1.3.5'
 }
 ```
 

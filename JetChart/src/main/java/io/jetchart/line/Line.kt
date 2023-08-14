@@ -4,7 +4,6 @@ import io.jetchart.line.renderer.line.LineDrawer
 
 data class Line(
   val points: List<Point>,
-  /** This is percentage we pad yValue by.**/
   val padBy: Float = 20f,
   val startAtZero: Boolean = false,
   val lineDrawer: LineDrawer,
@@ -21,9 +20,8 @@ data class Line(
       return min to max
     }
 
-  internal val maxYValue: Float =
-    yMinMax.second + ((yMinMax.second - yMinMax.first) * padBy / 100f)
-  internal val minYValue: Float
+  val maxYValue: Float = yMinMax.second + ((yMinMax.second - yMinMax.first) * padBy / 100f)
+  val minYValue: Float
     get() {
       return if (startAtZero) {
         0f
@@ -31,5 +29,5 @@ data class Line(
         yMinMax.first - ((yMinMax.second - yMinMax.first) * padBy / 100f)
       }
     }
-  internal val yRange = maxYValue - minYValue
+  val yRange = maxYValue - minYValue
 }
