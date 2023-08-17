@@ -44,6 +44,7 @@ import io.jetchart.gauge.GaugeChart
 import io.jetchart.gauge.NeedleDrawer
 import io.jetchart.line.Line
 import io.jetchart.line.LineChart
+import io.jetchart.line.NullPoint
 import io.jetchart.line.Point
 import io.jetchart.line.renderer.line.GradientLineShader
 import io.jetchart.line.renderer.line.SolidLineDrawer
@@ -109,7 +110,8 @@ fun BarChartComposable(text: MutableState<String>) {
 fun LineChartComposable() {
     LineChart(lines = listOf(
         Line(points = points(10), lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Blue)),
-        Line(points = points(15), lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Red))),
+        Line(points = points(15), lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Red)),
+        Line(points = points(6) + nullPoints(2), lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Cyan))),
     modifier = Modifier
         .horizontalScroll(rememberScrollState())
         .width(1000.dp)
@@ -123,8 +125,8 @@ fun LineChartComposable() {
     )
 }
 
-@Composable
 private fun points(count: Int) = (1..count).map { Point(Random.nextFloat(), "Point$it") }
+private fun nullPoints(count: Int) = (1..count).map { NullPoint("Point$it") }
 
 @Composable
 fun PieChartComposable() {

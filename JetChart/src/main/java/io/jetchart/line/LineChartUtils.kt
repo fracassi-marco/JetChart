@@ -71,7 +71,7 @@ object LineChartUtils {
   fun calculatePointLocation(
       drawableArea: Rect,
       lineChartData: Line,
-      point: Point,
+      point: LinePoint,
       index: Int
   ): Offset {
     val x = (index.toFloat() / (lineChartData.points.size - 1))
@@ -116,12 +116,15 @@ object LineChartUtils {
         transitionProgress = transitionProgress,
         lineChartData = lineChartData
       ) { progress ->
-        val pointLocation = calculatePointLocation(
-          drawableArea = drawableArea,
-          lineChartData = lineChartData,
-          point = point,
-          index = index
-        )
+        val pointLocation = when(point) {
+          is Point -> calculatePointLocation(
+            drawableArea = drawableArea,
+            lineChartData = lineChartData,
+            point = point,
+            index = index
+          )
+          is NullPoint -> Offset.Unspecified
+        }
 
         if (pointLocation.isSpecified) {
           if (index == 0) {
@@ -151,8 +154,6 @@ object LineChartUtils {
                         lineChartData: Line,
                         transitionProgress: Float
   ): Path = Path().apply {
-
-    // we start from the bottom left
     moveTo(drawableArea.left, drawableArea.bottom)
     var prevPointX : Float? = null
     var prevPointLocation: Offset? = null
@@ -162,12 +163,15 @@ object LineChartUtils {
         transitionProgress = transitionProgress,
         lineChartData = lineChartData
       ) { progress ->
-        val pointLocation = calculatePointLocation(
-          drawableArea = drawableArea,
-          lineChartData = lineChartData,
-          point = point,
-          index = index
-        )
+        val pointLocation = when(point) {
+          is Point -> calculatePointLocation(
+            drawableArea = drawableArea,
+            lineChartData = lineChartData,
+            point = point,
+            index = index
+          )
+          is NullPoint -> Offset.Unspecified
+        }
 
         if (pointLocation.isSpecified) {
           if (index == 0) {

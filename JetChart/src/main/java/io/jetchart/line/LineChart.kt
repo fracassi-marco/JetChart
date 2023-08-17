@@ -138,8 +138,6 @@ private fun DrawScope.drawLine(
     lineChartData: Line,
     chartDrawableArea: Rect
 ) {
-
-    // Draw the chart line.
     lineDrawer.drawLine(
         drawScope = this,
         canvas = canvas,
@@ -160,7 +158,7 @@ private fun DrawScope.drawLine(
         )
     )
 
-    lineChartData.points.forEachIndexed { index, point ->
+    lineChartData.points.filterIsInstance<Point>().forEachIndexed { index, point ->
         withProgress(
             index = index,
             lineChartData = lineChartData,

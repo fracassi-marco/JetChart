@@ -3,7 +3,7 @@ package io.jetchart.line
 import io.jetchart.line.renderer.line.LineDrawer
 
 data class Line(
-  val points: List<Point>,
+  val points: List<LinePoint>,
   val padBy: Float = 20f,
   val startAtZero: Boolean = false,
   val lineDrawer: LineDrawer,
