@@ -114,10 +114,12 @@ fun LineChart(
                 maxValue = lines.maxOf { it.maxYValue }
             )
 
+            val yRange = yRange(lines)
             lines.forEachIndexed { index, lineChartData ->
                 drawLine(
                     canvas = canvas,
                     lineChartData = lineChartData,
+                    yRange = yRange,
                     transitionAnimation = transitionAnimation[index],
                     pointDrawer = pointDrawer,
                     lineDrawer = lineChartData.lineDrawer,
@@ -129,6 +131,12 @@ fun LineChart(
     }
 }
 
+fun yRange(lines: List<Line>): Float {
+    val min = lines.minOf { it.minYValue }
+    val max = lines.maxOf { it.maxYValue }
+    return max - min
+}
+
 private fun DrawScope.drawLine(
     pointDrawer: PointDrawer = FilledPointDrawer(),
     lineDrawer: LineDrawer = SolidLineDrawer(),
@@ -136,6 +144,7 @@ private fun DrawScope.drawLine(
     canvas: Canvas,
     transitionAnimation: Animatable<Float, AnimationVector1D>,
     lineChartData: Line,
+    yRange: Float,
     chartDrawableArea: Rect
 ) {
     lineDrawer.drawLine(
@@ -144,6 +153,7 @@ private fun DrawScope.drawLine(
         linePath = calculateLinePath(
             drawableArea = chartDrawableArea,
             lineChartData = lineChartData,
+            yRange = yRange,
             transitionProgress = transitionAnimation.value
         )
     )
@@ -154,6 +164,7 @@ private fun DrawScope.drawLine(
         fillPath = calculateFillPath(
             drawableArea = chartDrawableArea,
             lineChartData = lineChartData,
+            yRange = yRange,
             transitionProgress = transitionAnimation.value
         )
     )
@@ -170,6 +181,7 @@ private fun DrawScope.drawLine(
                 center = calculatePointLocation(
                     drawableArea = chartDrawableArea,
                     lineChartData = lineChartData,
+                    yRange = yRange,
                     point = point,
                     index = index
                 )

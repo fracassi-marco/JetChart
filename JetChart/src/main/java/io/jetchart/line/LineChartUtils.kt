@@ -71,11 +71,12 @@ object LineChartUtils {
   fun calculatePointLocation(
       drawableArea: Rect,
       lineChartData: Line,
+      yRange: Float,
       point: LinePoint,
       index: Int
   ): Offset {
     val x = (index.toFloat() / (lineChartData.points.size - 1))
-    val y = ((point.value - lineChartData.minYValue) / lineChartData.yRange)
+    val y = ((point.value - lineChartData.minYValue) / yRange)
 
     return Offset(
       x = (x * drawableArea.width) + drawableArea.left,
@@ -107,6 +108,7 @@ object LineChartUtils {
   fun calculateLinePath(
       drawableArea: Rect,
       lineChartData: Line,
+      yRange: Float,
       transitionProgress: Float
   ): Path = Path().apply {
     var prevPointLocation: Offset? = null
@@ -120,6 +122,7 @@ object LineChartUtils {
           is Point -> calculatePointLocation(
             drawableArea = drawableArea,
             lineChartData = lineChartData,
+            yRange = yRange,
             point = point,
             index = index
           )
@@ -152,6 +155,7 @@ object LineChartUtils {
 
   fun calculateFillPath(drawableArea: Rect,
                         lineChartData: Line,
+                        yRange: Float,
                         transitionProgress: Float
   ): Path = Path().apply {
     moveTo(drawableArea.left, drawableArea.bottom)
@@ -167,6 +171,7 @@ object LineChartUtils {
           is Point -> calculatePointLocation(
             drawableArea = drawableArea,
             lineChartData = lineChartData,
+            yRange = yRange,
             point = point,
             index = index
           )

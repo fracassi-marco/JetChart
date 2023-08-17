@@ -125,7 +125,7 @@ fun LineChartComposable() {
     )
 }
 
-private fun points(count: Int) = (1..count).map { Point(Random.nextFloat(), "Point$it") }
+private fun points(count: Int) = (1..count).map { Point(10 + Random.nextFloat(), "Point$it") }
 private fun nullPoints(count: Int) = (1..count).map { NullPoint("Point$it") }
 
 @Composable
