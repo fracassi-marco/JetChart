@@ -24,7 +24,8 @@ class LineYAxisWithValueDrawer(
     private val labelRatio: Int = 3,
     private val labelValueFormatter: LabelFormatter = { value -> "%.1f".format(value) },
     private val axisLineThickness: Dp = 1.dp,
-    private val axisLineColor: Color = Color.Black
+    private val axisLineColor: Color = Color.Black,
+    private val minRightPadding: Dp = 50.dp
 ) : YAxisDrawer {
   private val axisLinePaint = Paint().apply {
     isAntiAlias = true
@@ -93,7 +94,7 @@ class LineYAxisWithValueDrawer(
 
   override fun marginRight(drawScope: DrawScope): Float {
     with(drawScope) {
-      return minOf(50.dp.toPx(), size.width * 10f / 100f)
+      return minOf(minRightPadding.toPx(), size.width * 10f / 100f)
     }
   }
 }
