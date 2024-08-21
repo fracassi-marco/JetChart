@@ -87,12 +87,13 @@ class MainActivity : ComponentActivity() {
 fun BarChartComposable(text: MutableState<String>) {
     val numberOfBars = 8
     val width = numberOfBars * 80
-    BarChart(bars = Bars(
-        bars = (1..numberOfBars).map {
-            Bar(label = "BAR$it", value = Random.nextFloat(), color = if(it % 2 == 0) JetGreen else Red) {
-                    bar -> text.value = "You clicked on the bar ${bar.label}!"
-            }
-        }),
+    BarChart(
+        bars = Bars(
+            bars = (1..numberOfBars).map {
+                Bar(label = "BAR$it", value = Random.nextFloat(), color = if (it % 2 == 0) JetGreen else Red) { bar ->
+                    text.value = "You clicked on the bar ${bar.label}!"
+                }
+            }),
         modifier = Modifier
             .horizontalScroll(rememberScrollState())
             .width(width.dp)
@@ -108,20 +109,25 @@ fun BarChartComposable(text: MutableState<String>) {
 
 @Composable
 fun LineChartComposable() {
-    LineChart(lines = listOf(
-        Line(points = points(10), lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Blue)),
-        Line(points = points(15), lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Red)),
-        Line(points = points(6) + nullPoints(2), lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Cyan))),
-    modifier = Modifier
-        .horizontalScroll(rememberScrollState())
-        .width(1000.dp)
-        .height(500.dp),
-    animation = fadeInAnimation(3000),
-    pointDrawer = FilledPointDrawer(),
-    xAxisDrawer = LineXAxisDrawer(),
-    yAxisDrawer = LineYAxisWithValueDrawer(),
-    horizontalOffsetPercentage = 1f,
-    lineShader = GradientLineShader(listOf(JetGreen, Transparent))
+    LineChart(
+        lines = listOf(
+            Line(
+                points = points(10),
+                lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Blue),
+                shader = GradientLineShader(listOf(JetGreen, Transparent))
+            ),
+            Line(points = points(15), lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Red)),
+            Line(points = points(6) + nullPoints(2), lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Cyan))
+        ),
+        modifier = Modifier
+            .horizontalScroll(rememberScrollState())
+            .width(1000.dp)
+            .height(500.dp),
+        animation = fadeInAnimation(3000),
+        pointDrawer = FilledPointDrawer(),
+        xAxisDrawer = LineXAxisDrawer(),
+        yAxisDrawer = LineYAxisWithValueDrawer(),
+        horizontalOffsetPercentage = 1f,
     )
 }
 
@@ -130,7 +136,8 @@ private fun nullPoints(count: Int) = (1..count).map { NullPoint("Point$it") }
 
 @Composable
 fun PieChartComposable() {
-    PieChart(pies = Pies(listOf(Slice(15f, Red), Slice(27f, JetGreen), Slice(5f, Yellow), Slice(11f, Cyan))),
+    PieChart(
+        pies = Pies(listOf(Slice(15f, Red), Slice(27f, JetGreen), Slice(5f, Yellow), Slice(11f, Cyan))),
         modifier = Modifier.height(340.dp),
         animation = fadeInAnimation(4000),
         sliceDrawer = FilledSliceDrawer(thickness = 100f)
@@ -139,7 +146,8 @@ fun PieChartComposable() {
 
 @Composable
 fun DonutChartComposable() {
-    PieChart(pies = Pies(listOf(Slice(35f, Red), Slice(45f, JetGreen), Slice(15f, Yellow), Slice(5f, Cyan))),
+    PieChart(
+        pies = Pies(listOf(Slice(35f, Red), Slice(45f, JetGreen), Slice(15f, Yellow), Slice(5f, Cyan))),
         modifier = Modifier.height(340.dp),
         animation = fadeInAnimation(4000),
         sliceDrawer = FilledSliceDrawer(thickness = 60f)
@@ -150,7 +158,9 @@ fun DonutChartComposable() {
 fun GaugeChartComposable() {
     GaugeChart(
         percentValue = 72f, //between 0 and 100
-        modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+        modifier = Modifier
+            .padding(horizontal = 16.dp)
+            .fillMaxWidth(),
         animation = fadeInAnimation(4000),
         pointerDrawer = NeedleDrawer(needleColor = JetGreen, baseSize = 12.dp),
         arcDrawer = GaugeArcDrawer(thickness = 32.dp, cap = StrokeCap.Round)

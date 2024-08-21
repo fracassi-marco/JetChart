@@ -42,7 +42,6 @@ fun LineChart(
         ?: emptyList(),
     animation: AnimationSpec<Float> = fadeInAnimation(),
     pointDrawer: PointDrawer = FilledPointDrawer(),
-    lineShader: LineShader = NoLineShader,
     xAxisDrawer: XAxisDrawer = LineXAxisDrawer(),
     yAxisDrawer: YAxisDrawer = LineYAxisWithValueDrawer(),
     horizontalOffsetPercentage: Float = 5f
@@ -115,15 +114,15 @@ fun LineChart(
             )
 
             val yRange = yRange(lines)
-            lines.forEachIndexed { index, lineChartData ->
+            lines.forEachIndexed { index, line ->
                 drawLine(
                     canvas = canvas,
-                    lineChartData = lineChartData,
+                    lineChartData = line,
                     yRange = yRange,
                     transitionAnimation = transitionAnimation[index],
                     pointDrawer = pointDrawer,
-                    lineDrawer = lineChartData.lineDrawer,
-                    lineShader = lineShader,
+                    lineDrawer = line.lineDrawer,
+                    lineShader = line.shader,
                     chartDrawableArea = chartDrawableArea
                 )
             }

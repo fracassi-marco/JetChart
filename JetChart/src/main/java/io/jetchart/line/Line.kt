@@ -1,12 +1,15 @@
 package io.jetchart.line
 
 import io.jetchart.line.renderer.line.LineDrawer
+import io.jetchart.line.renderer.line.LineShader
+import io.jetchart.line.renderer.line.NoLineShader
 
 data class Line(
   val points: List<LinePoint>,
   val padBy: Float = 20f,
   val startAtZero: Boolean = false,
   val lineDrawer: LineDrawer,
+  val shader: LineShader = NoLineShader,
 ) {
   init {
     require(padBy in 0f..100f)
