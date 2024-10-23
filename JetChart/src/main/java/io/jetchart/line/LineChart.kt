@@ -41,7 +41,6 @@ fun LineChart(
     labels: List<String> = lines.maxByOrNull { it.points.size }?.points?.map { it.label }
         ?: emptyList(),
     animation: AnimationSpec<Float> = fadeInAnimation(),
-    pointDrawer: PointDrawer = FilledPointDrawer(),
     xAxisDrawer: XAxisDrawer = LineXAxisDrawer(),
     yAxisDrawer: YAxisDrawer = LineYAxisWithValueDrawer(),
     horizontalOffsetPercentage: Float = 5f
@@ -120,7 +119,7 @@ fun LineChart(
                     lineChartData = line,
                     yRange = yRange,
                     transitionAnimation = transitionAnimation[index],
-                    pointDrawer = pointDrawer,
+                    pointDrawer = line.pointDrawer,
                     lineDrawer = line.lineDrawer,
                     lineShader = line.shader,
                     chartDrawableArea = chartDrawableArea

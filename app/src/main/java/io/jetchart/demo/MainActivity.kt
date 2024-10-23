@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -31,9 +31,9 @@ import androidx.compose.ui.unit.dp
 import io.jetchart.bar.Bar
 import io.jetchart.bar.BarChart
 import io.jetchart.bar.Bars
+import io.jetchart.bar.renderer.label.SimpleBarLabelDrawer
 import io.jetchart.bar.renderer.label.SimpleBarValueDrawer
 import io.jetchart.bar.renderer.label.SimpleBarValueDrawer.ValueDrawLocation.Inside
-import io.jetchart.bar.renderer.label.SimpleBarLabelDrawer
 import io.jetchart.bar.renderer.xaxis.BarXAxisDrawer
 import io.jetchart.bar.renderer.yaxis.BarYAxisWithValueDrawer
 import io.jetchart.common.animation.fadeInAnimation
@@ -48,7 +48,7 @@ import io.jetchart.line.NullPoint
 import io.jetchart.line.Point
 import io.jetchart.line.renderer.line.GradientLineShader
 import io.jetchart.line.renderer.line.SolidLineDrawer
-import io.jetchart.line.renderer.point.FilledPointDrawer
+import io.jetchart.line.renderer.point.NoPointDrawer
 import io.jetchart.line.renderer.xaxis.LineXAxisDrawer
 import io.jetchart.line.renderer.yaxis.LineYAxisWithValueDrawer
 import io.jetchart.pie.PieChart
@@ -114,6 +114,7 @@ fun LineChartComposable() {
             Line(
                 points = points(10),
                 lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Blue),
+                pointDrawer = NoPointDrawer,
                 shader = GradientLineShader(listOf(JetGreen, Transparent))
             ),
             Line(points = points(15), lineDrawer = SolidLineDrawer(thickness = 8.dp, color = Red)),
@@ -124,7 +125,6 @@ fun LineChartComposable() {
             .width(1000.dp)
             .height(500.dp),
         animation = fadeInAnimation(3000),
-        pointDrawer = FilledPointDrawer(),
         xAxisDrawer = LineXAxisDrawer(),
         yAxisDrawer = LineYAxisWithValueDrawer(),
         horizontalOffsetPercentage = 1f,
@@ -169,5 +169,5 @@ fun GaugeChartComposable() {
 
 @Composable
 private fun JetDivider() {
-    Divider(modifier = Modifier.padding(horizontal = 5.dp, vertical = 50.dp), thickness = 1.dp, color = JetGreen)
+    HorizontalDivider(modifier = Modifier.padding(horizontal = 5.dp, vertical = 50.dp), thickness = 1.dp, color = JetGreen)
 }

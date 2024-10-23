@@ -3,12 +3,15 @@ package io.jetchart.line
 import io.jetchart.line.renderer.line.LineDrawer
 import io.jetchart.line.renderer.line.LineShader
 import io.jetchart.line.renderer.line.NoLineShader
+import io.jetchart.line.renderer.point.FilledPointDrawer
+import io.jetchart.line.renderer.point.PointDrawer
 
 data class Line(
   val points: List<LinePoint>,
   val padBy: Float = 20f,
   val startAtZero: Boolean = false,
   val lineDrawer: LineDrawer,
+  val pointDrawer: PointDrawer = FilledPointDrawer(),
   val shader: LineShader = NoLineShader,
 ) {
   init {

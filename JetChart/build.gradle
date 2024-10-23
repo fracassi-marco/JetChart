@@ -59,7 +59,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'io.jetchart'
                 artifactId = 'JetChart'
-                version = '1.4.2'
+                version = '1.4.3'
             }
         }
     }
