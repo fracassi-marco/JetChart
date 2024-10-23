@@ -183,7 +183,8 @@ private fun DrawScope.drawLine(
                     yRange = yRange,
                     point = point,
                     index = index
-                )
+                ),
+                index
             )
         }
     }

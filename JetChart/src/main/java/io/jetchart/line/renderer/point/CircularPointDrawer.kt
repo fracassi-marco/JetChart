@@ -23,9 +23,10 @@ data class CircularPointDrawer(
   }
 
   override fun drawPoint(
-    drawScope: DrawScope,
-    canvas: Canvas,
-    center: Offset
+      drawScope: DrawScope,
+      canvas: Canvas,
+      center: Offset,
+      index: Int
   ) {
     with(drawScope as Density) {
       canvas.drawCircle(
@@ -38,3 +39,4 @@ data class CircularPointDrawer(
     }
   }
 }
+

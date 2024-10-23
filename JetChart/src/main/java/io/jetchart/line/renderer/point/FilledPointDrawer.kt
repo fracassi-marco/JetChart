@@ -24,7 +24,8 @@ data class FilledPointDrawer(
   override fun drawPoint(
     drawScope: DrawScope,
     canvas: Canvas,
-    center: Offset
+    center: Offset,
+    index: Int
   ) {
     with(drawScope as Density) {
       canvas.drawCircle(center, diameter.toPx() / 2f, paint)

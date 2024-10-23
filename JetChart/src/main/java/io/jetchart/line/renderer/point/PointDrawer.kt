@@ -8,6 +8,7 @@ interface PointDrawer {
   fun drawPoint(
     drawScope: DrawScope,
     canvas: Canvas,
-    center: Offset
+    center: Offset,
+    index: Int
   )
 }
